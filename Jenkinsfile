@@ -1,30 +1,35 @@
 pipeline {
 
-            agent any
-            
-            stages {
-            
-                stage("Building") {
-            
-                    steps {
-                        echo "Building ..."
-                    }
-                }
+      agent any
 
-                stage("Testing") {
+      options {
+          buildDiscarder(logRotator(numToKeepStr: '1')) 
+          timeout(time: 5, unit: "MINUTES")
+      }
+      
+      stages {
+      
+          stage("Building") {
+      
+              steps {
+                  echo "Building ..."
+              }
+          }
 
-                    steps {
-                        echo "Testing ..."
-                    }
-                }
+          stage("Testing") {
 
-                stage("Deploying") {
+              steps {
+                  echo "Testing ..."
+              }
+          }
 
-                    steps {
+          stage("Deploying") {
 
-                        echo "deploying ..."
-                    }
-                }
+              steps {
 
-            }
-        }
+                  echo "deploying ..."
+              }
+          }
+
+      }
+  }
