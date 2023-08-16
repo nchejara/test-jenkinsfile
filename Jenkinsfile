@@ -24,7 +24,9 @@ pipeline {
           }
 
           stage("Deploying") {
-
+              when {
+                branch "qa-* dev-*"
+              }
               steps {
 
                   echo "deploying ..."
